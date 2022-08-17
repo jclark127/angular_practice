@@ -1,11 +1,11 @@
 <div class="game-tabs">
     <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
         <mat-tab label="About">
-            <p class="game-tabs-par">
-                Platforms: <span></span>
+            <p class="game-tabs-par" *ngIf="game.parent_platforms?.length">
+                Platforms: <span *ngFor="let game of game.parent_platforms; let last = last">{{game.platform.name}}<span *ngIf="!last">, </span></span>
             </p>
-            <p class="game-tabs-par">
-                Publishers: <span></span>
+            <p class="game-tabs-par" *ngIf="game.publishers?.length">
+                Publishers: <span *ngFor="let publisher of game.publishers; let last = last">{{publisher.name}}<span *ngIf="!last">, </span></span>
             </p>
             <p class="game-tabs-par">
                 Website: <a href="#" target="_blank" class="game-tabs-link"></a>
