@@ -13,23 +13,23 @@
             <div class="game-description" [innerHTML]="game.description"></div>
                 <p class="game-tabs-votes">
                     <ng-container *ngfor="let rating of game.ratings">
-                    <span>
+                    <span *ngIf="rating.title === 'exceptional'">
                         <mat-icon class="game-votes-up">thumb_up</mat-icon>
-                        <span class="game-votes-count">55</span>
+                        <span class="game-votes-count">{{rating.count || 0}}</span>
                     </span>
-                    <span>
+                    <span *ngIf="rating.title === 'skip'">
                         <mat-icon class="game-votes-down">thumb_down</mat-icon>
-                        <span class="game-votes-count">0</span>
+                        <span class="game-votes-count">{{rating.count || 0}}</span>
                     </span>
                 </ng-container>
                 </p>
         </mat-tab>
-        <mat-tab label="Screenshots">
-            <img src="" alt="" class="gamescreenshot">
+        <mat-tab label="Screenshots" *ngIf="game.screenshots?.length">
+            <img *ngfor="let screenshot of game.screenshots" src="{{screenshot.image}}" alt="" class="gamescreenshot">
         </mat-tab>
 
         <mat-tab label="Trailers">
-            <video class="game-trailer" controls src="">
+            <video *ngFor="let trailer of game.trailers" class="game-trailer" controls src="{{trailer.data?.max}}">
 
             </video>    
         </mat-tab>
